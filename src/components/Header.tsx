@@ -1,0 +1,16 @@
+import { RADIO_TITLE } from '../pages/consts';
+
+export function Header() {
+	return (
+		<header class="bg-green-600 text-white p-4">
+        <nav class="container mx-auto flex justify-between">
+          <a href="/" class="text-xl font-bold">{RADIO_TITLE}</a>
+          <div>
+            <a href="/" class="mr-4">Home</a>
+            <a href="/about" class="mr-4">About</a>
+            <a href="/contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+	);
+}
