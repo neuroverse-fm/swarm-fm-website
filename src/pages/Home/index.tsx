@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { Layout } from '../../layouts/Layout';
-import { RADIO_TITLE } from '../consts';
+import { RADIO_TITLE } from '../../consts';
 
 export function Home() {
   return (

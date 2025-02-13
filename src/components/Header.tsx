@@ -1,4 +1,4 @@
-import { RADIO_TITLE } from '../pages/consts';
+import { RADIO_TITLE } from '../consts';
 
 export function Header() {
 	return (
@@ -6,7 +6,7 @@ export function Header() {
         <nav class="container mx-auto flex justify-between">
           <a href="/" class="text-xl font-bold">{RADIO_TITLE}</a>
           <div>
-            <a href="/" class="mr-4">Home</a>
+            <a href="/community" class="mr-4">Community</a>
             <a href="/about" class="mr-4">About</a>
             <a href="/contact">Contact</a>
           </div>
