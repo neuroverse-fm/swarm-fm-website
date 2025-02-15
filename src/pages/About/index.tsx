@@ -1,6 +1,5 @@
-import { h } from 'preact';
-import { Layout } from '../../layouts/Layout';
-import { RADIO_TITLE_PLAIN } from '../../consts';
+import { Layout } from "../../layouts/Layout";
+import { RADIO_TITLE_PLAIN } from "../../consts";
 
 export function About() {
   return (

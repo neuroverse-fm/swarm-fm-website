@@ -1,5 +1,4 @@
-import { h } from 'preact';
-import { useRadio } from '../utils/RadioContext';
+import { useRadio } from "../utils/RadioContext";
 
 export function RadioPlayer() {
   const { isPlaying, setIsPlaying } = useRadio();

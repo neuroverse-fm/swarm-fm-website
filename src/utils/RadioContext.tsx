@@ -1,5 +1,5 @@
-import { h, createContext } from 'preact';
-import { useState, useContext } from 'preact/hooks';
+import { createContext } from "preact";
+import { useState, useContext } from "preact/hooks";
 
 const RadioContext = createContext(null);
 
