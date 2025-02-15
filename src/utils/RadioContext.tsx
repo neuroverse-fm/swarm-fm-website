@@ -1,13 +1,14 @@
 import { createContext } from "preact";
 import { useState, useContext } from "preact/hooks";
+import { YOUTUBE_STREAM } from "../consts";
 
 const RadioContext = createContext(null);
 
 export function RadioProvider({ children }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [streamUrl, setStreamUrl] = useState(YOUTUBE_STREAM);
 
   return (
-    <RadioContext.Provider value={{ isPlaying, setIsPlaying }}>
+    <RadioContext.Provider value={{ streamUrl, setStreamUrl }}>
       {children}
     </RadioContext.Provider>
   );

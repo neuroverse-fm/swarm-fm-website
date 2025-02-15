@@ -44,13 +44,21 @@ export function Community() {
             {project.image && (
               <img class="w-full" src={project.image} alt={project.name} />
             )}
-            <div class="px-6 py-6">
+            <div class="px-6 py-6 text-center">
               <a class="font-bold text-xl mb-2 text-center">
                 {project.name} by {project.author}
               </a>
               <p class="text-base text-center">{project.description}</p>
             </div>
             <div class="px-6 pt-4 pb-2 text-center">
+              {project.source && (
+                <a
+                  href={project.source}
+                  class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                >
+                  View Source
+                </a>
+              )}
               {project.link && (
                 <a
                   href={project.link}
