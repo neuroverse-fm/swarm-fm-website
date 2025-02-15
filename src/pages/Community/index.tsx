@@ -10,7 +10,7 @@ interface ProjectsProps {
   link?: string;
 }
 
-const projects = [
+const projects: ProjectsProps[] = [
   {
     name: "SwarmFM Player",
     author: "gwashark",
