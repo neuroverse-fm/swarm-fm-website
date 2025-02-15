@@ -1,3 +1,5 @@
+import { h } from 'preact';
+
 interface SocialButtonProps {
   href: string;
   icon: string;
@@ -5,19 +7,16 @@ interface SocialButtonProps {
   children: preact.ComponentChildren;
 }
 
-export const SocialButton = ({
-  href,
-  icon,
-  colours,
-  children,
-}: SocialButtonProps) => {
-  const iconName = icon.toLocaleLowerCase;
+export const SocialButton = ({ href, icon, colours, children }: SocialButtonProps) => {
+  const iconName = icon.toLowerCase();
+  const iconClass = iconName === 'coffee' ? 'fas' : 'fab'; // Use 'fas' for coffee icon, 'fab' for others
+
   return (
     <a
       href={href}
       class={`flex items-center ${colours} text-white font-bold py-2 px-4 rounded`}
     >
-      {/* <i class={`fab fa-${iconName} mr-2`}></i> */}
+      <i class={`${iconClass} fa-${iconName} mr-2`} />
       {children}
     </a>
   );
