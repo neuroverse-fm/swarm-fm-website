@@ -69,6 +69,23 @@ const AttribsList: AttributionProps[] = [
       },
     ],
   },
+  {
+    section: "Extra Thanks",
+    list: [
+      {
+        name: "QueenPb",
+        link: null,
+      },
+      {
+        name: "vedal987",
+        link: "https://twitch.tv/vedal987",
+      },
+      {
+        name: "Neuro-sama + Evil Neuro",
+        link: null,
+      },
+    ],
+  },
 ];
 
 export function Attributions() {

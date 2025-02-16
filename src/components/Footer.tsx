@@ -21,7 +21,7 @@ export function Footer() {
       <StyledLink href="https://twitch.tv/vedal987">
         vedal987 or Neuro-sama
       </StyledLink>
-      , just your friendly Swarm.
+      , just your friendly Swarm members.
     </footer>
   );
 }

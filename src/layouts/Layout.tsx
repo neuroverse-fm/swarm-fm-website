@@ -13,7 +13,9 @@ export function Layout({ title, children }: LayoutProps) {
     <div class="min-h-screen flex flex-col">
       <title>{formattedTitle}</title>
       <Header />
-      <main class="flex-grow container mx-auto p-4">{children}</main>
+      <main class="flex-grow container mx-auto p-4 text-center">
+        {children}
+      </main>
       <Footer />
     </div>
   );

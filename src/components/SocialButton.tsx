@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h } from "preact";
 
 interface SocialButtonProps {
   href: string;
@@ -7,9 +7,14 @@ interface SocialButtonProps {
   children: preact.ComponentChildren;
 }
 
-export const SocialButton = ({ href, icon, colours, children }: SocialButtonProps) => {
+export const SocialButton = ({
+  href,
+  icon,
+  colours,
+  children,
+}: SocialButtonProps) => {
   const iconName = icon.toLowerCase();
-  const iconClass = iconName === 'coffee' ? 'fas' : 'fab'; // Use 'fas' for coffee icon, 'fab' for others
+  const iconClass = iconName === "coffee" ? "fas" : "fab"; // Use 'fas' for coffee icon, 'fab' for others
 
   return (
     <a

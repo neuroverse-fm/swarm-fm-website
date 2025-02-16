@@ -9,6 +9,8 @@ import "./style.css";
 import { Community } from "./pages/Community";
 import { Attributions } from "./pages/Attributions";
 import { NotFound } from "./pages/_404";
+import { Overlays } from "./pages/Overlays";
+import { OverlayInstructions } from "./pages/Overlays/instructions";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/contact" component={Contact} />
         <Route path="/community" component={Community} />
         <Route path="/attributions" component={Attributions} />
+        <Route path="/overlays" component={Overlays} />
+        <Route path="/overlays/instructions" component={OverlayInstructions} />
         <Route default component={NotFound} />
       </Router>
       <RadioPlayer />
