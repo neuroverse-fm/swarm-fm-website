@@ -5,7 +5,7 @@ import { YOUTUBE_STREAM } from "../consts";
 const RadioContext = createContext(null);
 
 export function RadioProvider({ children }) {
-  const [streamUrl, setStreamUrl] = useState(YOUTUBE_STREAM);
+  const [streamUrl, setStreamUrl] = useState<string>(YOUTUBE_STREAM);
 
   return (
     <RadioContext.Provider value={{ streamUrl, setStreamUrl }}>

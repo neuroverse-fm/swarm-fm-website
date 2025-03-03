@@ -2,11 +2,6 @@ import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { RADIO_TITLE } from "../consts";
 
-interface LayoutProps {
-  title: string;
-  children: preact.ComponentChildren;
-}
-
 export function Layout({ title, children }: LayoutProps) {
   const formattedTitle = `${title} | ${RADIO_TITLE}`;
   return (

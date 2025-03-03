@@ -3,13 +3,6 @@ import { RADIO_TITLE } from "../../consts";
 import { SocialButton } from "../../components/SocialButton";
 import { StyledLink } from "../../components/StyledLink";
 
-interface socialProps {
-  href: string;
-  name: string;
-  icon: string;
-  colours: string;
-}
-
 const socials: socialProps[] = [
   {
     href: "https://twitch.tv/boop_dot",

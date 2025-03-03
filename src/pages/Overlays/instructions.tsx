@@ -24,11 +24,9 @@ export function OverlayInstructions() {
         you aren't.
       </p>
       <ol class="list-decimal list-inside mt-4 space-y-2">
-        {instructions.map(
-          (instruction: string, index: number) => (
-            <li key={index}>{instruction}</li>
-          ),
-        )}
+        {instructions.map((instruction: string, index: number) => (
+          <li key={index}>{instruction}</li>
+        ))}
       </ol>
       <div class="mt-4">
         Now that you know how to add our overlays,{" "}

@@ -1,12 +1,3 @@
-import { h } from "preact";
-
-interface SocialButtonProps {
-  href: string;
-  icon: string;
-  colours: string;
-  children: preact.ComponentChildren;
-}
-
 export const SocialButton = ({
   href,
   icon,

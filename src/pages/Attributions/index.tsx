@@ -3,16 +3,6 @@ import { RADIO_TITLE_PLAIN } from "../../consts";
 import { StyledLink } from "../../components/StyledLink";
 import Block from "../../components/Blocks";
 
-interface AttributionProps {
-  section: string;
-  list: AttribsObjListProps[];
-}
-
-interface AttribsObjListProps {
-  name: string;
-  link: string | null;
-}
-
 const AttribsList: AttributionProps[] = [
   {
     section: "Art",

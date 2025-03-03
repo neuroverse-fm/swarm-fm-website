@@ -4,7 +4,7 @@ import { YOUTUBE_STREAM } from "../consts";
 
 export function RadioPlayer() {
   const { streamUrl, setStreamUrl } = useRadio();
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const reloadStream = () => {
     setStreamUrl(""); // Temporarily clear the URL to force a reload
@@ -15,7 +15,7 @@ export function RadioPlayer() {
 
   const toggleExpand = () => {
     if (window.innerWidth <= 768) {
-      const youtubePageUrl = streamUrl.replace("/embed/", "/watch?v=");
+      const youtubePageUrl: string = streamUrl.replace("/embed/", "/watch?v=");
       window.open(youtubePageUrl, "_blank");
     } else {
       setIsExpanded(!isExpanded);

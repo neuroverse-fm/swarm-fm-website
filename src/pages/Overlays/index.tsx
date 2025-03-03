@@ -9,11 +9,6 @@ const overlays: OverlayDisplayProps[] = [
   },
 ];
 
-interface OverlayDisplayProps {
-    name: string;
-    url: string;
-}
-
 export function Overlays() {
   const copyToClipboard = (url: string) => {
     navigator.clipboard.writeText(url).then(

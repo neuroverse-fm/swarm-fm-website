@@ -1,15 +1,6 @@
 import { Layout } from "../../layouts/Layout";
 import { RADIO_TITLE_PLAIN } from "../../consts";
 
-interface ProjectsProps {
-  name: string;
-  author: string;
-  description: string;
-  image?: string;
-  source?: string;
-  link?: string;
-}
-
 const projects: ProjectsProps[] = [
   {
     name: "SwarmFM Player",
