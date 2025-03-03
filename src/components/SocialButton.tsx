@@ -17,3 +17,5 @@ export const SocialButton = ({
     </a>
   );
 };
+
+export default SocialButton;

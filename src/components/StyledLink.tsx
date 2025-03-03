@@ -5,3 +5,5 @@ export function StyledLink({ href, children }: StyledLinkProps) {
     </a>
   );
 }
+
+export default StyledLink;

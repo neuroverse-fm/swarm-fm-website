@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { useRadio } from "../utils/RadioContext";
+import useRadio from "../utils/RadioContext";
 import { YOUTUBE_STREAM } from "../consts";
 
 export function RadioPlayer() {
@@ -53,3 +53,5 @@ export function RadioPlayer() {
     </div>
   );
 }
+
+export default RadioPlayer;

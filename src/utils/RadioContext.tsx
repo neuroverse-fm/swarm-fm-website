@@ -17,3 +17,5 @@ export function RadioProvider({ children }) {
 export function useRadio() {
   return useContext(RadioContext);
 }
+
+export default useRadio;

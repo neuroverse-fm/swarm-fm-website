@@ -1,5 +1,5 @@
 import { RADIO_TITLE } from "../consts";
-import { StyledLink } from "./StyledLink";
+import StyledLink from "./StyledLink";
 
 const today = new Date();
 
@@ -25,3 +25,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export default Footer;

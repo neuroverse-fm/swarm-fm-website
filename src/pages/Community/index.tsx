@@ -1,23 +1,31 @@
-import { Layout } from "../../layouts/Layout";
+import Layout from "../../layouts/Layout";
 import { RADIO_TITLE_PLAIN } from "../../consts";
 
 const projects: ProjectsProps[] = [
   {
     name: "SwarmFM Player",
-    author: "gwashark",
-    description: "A Swarm FM Player for your computer.",
-    image: null,
+    author: "Gwa Shark",
+    description: "An application that comes with Auto-Startup, Pin On Top, and of course, the stream that powers it all.",
+    image: "/community/SwarmFM-Player.png",
     source: "https://github.com/gwashark/swarmfm-player",
-    link: "https://github.com/gwashark/swarmfm-player/releases/tag/v0.0.0",
+    link: "https://github.com/gwashark/swarmfm-player/releases/",
+    linkText: "Install"
   },
   {
     name: "SwarmFM Extension",
     author: "akane",
     description: "A[n] extension that only goes to SwarmFM.",
-    image: null,
+    image: "/community/SwarmFM-Extension.png",
     source: "https://github.com/tywaraxe/SwarmFM-Extension",
     link: "https://github.com/tywaraxe/SwarmFM-Extension/releases/tag/Femboysocks",
   },
+  {
+    name: "Nuru",
+    author: "Gwa Shark",
+    description: "A Discord Bot for Swarm FM Reminders and More Neuro Fun!",
+    image: "/community/NuruReminders.png",
+    link: "https://discord.com/oauth2/authorize?client_id=1333173911524999178"
+  }
 ];
 
 export function Community() {
@@ -55,7 +63,7 @@ export function Community() {
                   href={project.link}
                   class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
-                  Visit
+                  {project.linkText ? project.linkText : "Visit"}
                 </a>
               )}
             </div>

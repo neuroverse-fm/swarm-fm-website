@@ -28,7 +28,7 @@ export function Header() {
         </a>
         <div>
           {HeaderItems.map((item: HeaderProps) => (
-            <a class="mr-4" href={item.href}>
+            <a class="mr-4 hover:underline" href={item.href}>
               {item.page}
             </a>
           ))}
@@ -37,3 +37,5 @@ export function Header() {
     </header>
   );
 }
+
+export default Header;

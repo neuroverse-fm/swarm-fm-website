@@ -1,5 +1,5 @@
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import { RADIO_TITLE } from "../consts";
 
 export function Layout({ title, children }: LayoutProps) {
@@ -15,3 +15,5 @@ export function Layout({ title, children }: LayoutProps) {
     </div>
   );
 }
+
+export default Layout;

@@ -20,6 +20,7 @@ interface ProjectsProps {
   image?: string;
   source?: string;
   link?: string;
+  linkText?: string;
 }
 
 interface AttributionProps {
