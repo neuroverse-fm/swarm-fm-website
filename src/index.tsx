@@ -2,7 +2,6 @@ import { h, render } from "preact";
 import { Router, Route } from "preact-router";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
 import { RadioProvider } from "./utils/RadioContext";
 import { RadioPlayer } from "./components/RadioPlayer";
 import "./style.css";
@@ -18,7 +17,6 @@ function App() {
       <Router>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
         <Route path="/community" component={Community} />
         <Route path="/attributions" component={Attributions} />
         <Route path="/overlays" component={Overlays} />

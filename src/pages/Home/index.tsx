@@ -5,18 +5,6 @@ import { StyledLink } from "../../components/StyledLink";
 
 const socials: socialProps[] = [
   {
-    href: "https://twitch.tv/boop_dot",
-    name: "Twitch (boop)",
-    icon: "twitch",
-    colours: "bg-purple-500 hover:bg-purple-700",
-  },
-  {
-    href: "https://twitch.tv/swarmfm",
-    name: "Twitch (Community)",
-    icon: "twitch",
-    colours: "bg-purple-500 hover:bg-purple-700",
-  },
-  {
     href: "https://youtube.com/watch?v=thCiTnOzkOM",
     name: "YouTube (Livestream)",
     icon: "youtube",

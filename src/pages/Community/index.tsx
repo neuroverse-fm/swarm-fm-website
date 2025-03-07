@@ -25,6 +25,20 @@ const projects: ProjectsProps[] = [
     description: "A Discord Bot for Swarm FM Reminders and More Neuro Fun!",
     image: "/community/NuruReminders.png",
     link: "https://discord.com/oauth2/authorize?client_id=1333173911524999178"
+  },
+  {
+    name: "boop's Twitch channel",
+    author: "boop.",
+    description: "boop's Twitch channel. Usually streams development of SwarmFM along with playing SwarmFM.",
+    link: "https://twitch.tv/boop_dot",
+    linkText: "Watch"
+  },
+  {
+    name: "SwarmFM Community Twitch Channel",
+    author: "Gwa Shark, HighKey, RaneingClouds",
+    description: "The channel where SwarmFM community streams happen! Usually consists of Minecraft & dev streams.",
+    link: "https://twitch.tv/swarmfm",
+    linkText: "Watch"
   }
 ];
 
@@ -45,8 +59,9 @@ export function Community() {
             )}
             <div class="px-6 py-6 text-center">
               <a class="font-bold text-xl mb-2 text-center">
-                {project.name} by {project.author}
+                {project.name}
               </a>
+              <p class="font-italic text-md mb-2 text-center"> by {project.author}</p>
               <p class="text-base text-center">{project.description}</p>
             </div>
             <div class="px-6 pt-4 pb-2 text-center">

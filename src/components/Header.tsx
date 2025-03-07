@@ -6,12 +6,8 @@ const HeaderItems: HeaderProps[] = [
     href: "/community",
   },
   {
-    page: "About",
+    page: "About & Contact",
     href: "/about",
-  },
-  {
-    page: "Contact",
-    href: "/contact",
   },
   {
     page: "Attributions",

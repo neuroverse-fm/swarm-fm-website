@@ -40,6 +40,10 @@ const AttribsList: AttributionProps[] = [
         name: "Simo",
         link: null,
       },
+      {
+        name: "HighKey/KTrain",
+        link: "https://ktrain5169.github.io"
+      }
     ],
   },
   {
@@ -54,7 +58,7 @@ const AttribsList: AttributionProps[] = [
         link: "https://x.com/MrFish399",
       },
       {
-        name: "key (Remote Control, VIRUS)",
+        name: "key (Remote Control, VIRUS, Propaganda!)",
         link: "https://x.com/soulgluttony",
       },
     ],
