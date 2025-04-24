@@ -18,7 +18,7 @@ interface YouTubeSearchResponse {
 
 export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil }) => {
   const apiKey   = env.YT_API_KEY
-  const channel  = '<YOUR_CHANNEL_ID>'
+  const channel  = 'UC2I6ta1bWX7DnEuYNvHiptQ'
 
   if (!apiKey) {
     return new Response(
@@ -68,7 +68,12 @@ export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil })
 
     const body = JSON.stringify(
       live
-        ? { livestreamUrl: `https://youtu.be/${live.id.videoId}` }
+        ? { 
+            rawVideoCode: live.id.videoId,
+            livestreamUrl: `https://youtu.be/${live.id.videoId}`,
+            embedUrl: `https://youtube.com/embed/${live.id.videoId}`,
+            nocookieUrl: `https://youtube-nocookie.com/embed/${live.id.videoId}`
+          }
         : { message: 'No live stream found' }
     )
 
