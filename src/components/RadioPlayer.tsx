@@ -6,6 +6,10 @@ export function RadioPlayer() {
   const { streamUrl, setStreamUrl } = useRadio();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+  if (!streamUrl) {
+    return <div>Loading...</div>; // Show a loading state while the stream URL is being fetched
+  }
+
   const reloadStream = () => {
     setStreamUrl(""); // Temporarily clear the URL to force a reload
     setTimeout(() => {

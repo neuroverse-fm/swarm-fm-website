@@ -1,11 +1,19 @@
 import { createContext } from "preact";
-import { useState, useContext } from "preact/hooks";
-import { YOUTUBE_STREAM } from "../consts";
+import { useState, useEffect, useContext } from "preact/hooks";
+import { selfQueryYouTubeStream } from "../consts";
 
 const RadioContext = createContext(null);
 
 export function RadioProvider({ children }) {
-  const [streamUrl, setStreamUrl] = useState<string>(YOUTUBE_STREAM);
+  const [streamUrl, setStreamUrl] = useState<string>("");
+
+  useEffect(() => {
+    async function fetchStreamUrl() {
+      const url = await selfQueryYouTubeStream();
+      setStreamUrl(url);
+    }
+    fetchStreamUrl();
+  }, []);
 
   return (
     <RadioContext.Provider value={{ streamUrl, setStreamUrl }}>
