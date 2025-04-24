@@ -16,6 +16,8 @@ interface YouTubeSearchResponse {
   items: Array<{ id: { videoId: string } }>
 }
 
+const CACHE_TTL_SECONDS: number = 600
+
 export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil }) => {
   const apiKey   = env.YT_API_KEY
   const channel  = 'UC2I6ta1bWX7DnEuYNvHiptQ'
@@ -78,7 +80,10 @@ export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil })
     )
 
     response = new Response(body, {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Cache-Control': `public, max-age=${CACHE_TTL_SECONDS}`
+      }
     })
     waitUntil(cache.put(cacheKey, response.clone()))
   }
