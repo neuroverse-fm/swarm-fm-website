@@ -1,0 +1,4 @@
+name = "swarm-fm-website"
+
+[build]
+command = "pnpm run build"
