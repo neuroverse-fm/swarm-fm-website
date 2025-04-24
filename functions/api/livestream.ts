@@ -22,7 +22,7 @@ const corsHeaders = {
     'Access-Control-Allow-Headers': 'Content-Type'
 }
 
-const CACHE_TTL_SECONDS: number = 600
+const CACHE_TTL_SECONDS: number = 120
 
 export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil }) => {
   const apiKey   = env.YT_API_KEY
