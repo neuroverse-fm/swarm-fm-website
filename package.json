@@ -9,21 +9,21 @@
     "style": "prettier --write ."
   },
   "dependencies": {
-    "preact": "^10.26.4",
-    "preact-iso": "^2.9.1",
-    "preact-router": "^4.1.2"
+    "preact": "~10.26.4",
+    "preact-iso": "~2.9.1",
+    "preact-router": "~4.1.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250424.0",
-    "@preact/preset-vite": "^2.10.1",
-    "@tailwindcss/vite": "^4.0.12",
-    "eslint": "^9.22.0",
-    "eslint-config-preact": "^1.5.0",
-    "prettier": "^3.5.3",
-    "tailwindcss": "^4.0.12",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.6",
-    "wrangler": "^4.13.0"
+    "@cloudflare/workers-types": "~4.20250424.0",
+    "@preact/preset-vite": "~2.10.1",
+    "@tailwindcss/vite": "~4.0.12",
+    "eslint": "~9.22.0",
+    "eslint-config-preact": "~1.5.0",
+    "prettier": "~3.5.3",
+    "tailwindcss": "~4.0.12",
+    "typescript": "~5.8.2",
+    "vite": "~6.2.6",
+    "wrangler": "~4.13.0"
   },
   "eslintConfig": {
     "extends": "preact"

@@ -16,6 +16,12 @@ interface YouTubeSearchResponse {
   items: Array<{ id: { videoId: string } }>
 }
 
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
+}
+
 const CACHE_TTL_SECONDS: number = 600
 
 export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil }) => {
@@ -44,7 +50,7 @@ export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil })
 
   if (!response) {
     const ytFetch = await fetch(url.toString(), {
-      cf: { cacheTtl: 60, cacheEverything: true }
+      cf: { cacheTtl: 600, cacheEverything: true }
     })
 
     // if YouTube returned an error, grab the JSON body so we can inspect it
@@ -61,7 +67,7 @@ export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil })
           statusText:  ytFetch.statusText,
           details,
         }),
-        { status: 502, headers: { 'Content-Type': 'application/json' } }
+        { status: 502, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       )
     }
 
@@ -82,7 +88,8 @@ export const onRequest: PagesFunction<Env> = async ({ env, request, waitUntil })
     response = new Response(body, {
       headers: { 
         'Content-Type': 'application/json',
-        'Cache-Control': `public, max-age=${CACHE_TTL_SECONDS}`
+        'Cache-Control': `public, max-age=${CACHE_TTL_SECONDS}`,
+        ...corsHeaders
       }
     })
     waitUntil(cache.put(cacheKey, response.clone()))
