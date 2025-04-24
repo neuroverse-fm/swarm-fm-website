@@ -6,6 +6,8 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": true,
+    "lib": ["es2020", "webworker"],
+    "types": ["@cloudflare/workers-types"],
 
     /* Preact Config */
     "jsx": "react-jsx",
