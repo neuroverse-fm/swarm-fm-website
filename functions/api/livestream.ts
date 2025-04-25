@@ -3,7 +3,7 @@ import { corsHeaders } from ".";
 
 interface Env {
   YT_API_KEY: string;
-  API_ENABLED: boolean;
+  API_ENABLED: string;
 }
 
 interface YouTubeError {
@@ -26,7 +26,7 @@ export const onRequest: PagesFunction<Env> = async ({
   waitUntil,
 }) => {
   // Check if the API is enabled
-  if (env.API_ENABLED !== true) {
+  if (env.API_ENABLED !== "true") {
     return new Response(
       JSON.stringify({
         error: "API is currently disabled",

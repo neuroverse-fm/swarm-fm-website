@@ -5,12 +5,12 @@ export const corsHeaders = {
 };
 
 interface Env {
-  API_ENABLED: boolean;
+  API_ENABLED: string;
 }
 
 export const onRequest: PagesFunction<Env> = async ({ env }) => {
   const response = {
-    message: env.API_ENABLED === true ? "Welcome to the API!" : "The API has been disabled.",
+    message: env.API_ENABLED === "true" ? "Welcome to the API!" : "The API has been disabled.",
     docs: "https://swarmfm.ktrain5369.me/api-docs",
   };
 
