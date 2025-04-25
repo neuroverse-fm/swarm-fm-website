@@ -1,4 +1,5 @@
 import type { PagesFunction } from "@cloudflare/workers-types";
+import { corsHeaders } from ".";
 
 interface Env {
   YT_API_KEY: string;
@@ -15,12 +16,6 @@ interface YouTubeError {
 interface YouTubeSearchResponse {
   items: Array<{ id: { videoId: string } }>;
 }
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
 
 const CACHE_TTL_SECONDS: number = 120;
 
