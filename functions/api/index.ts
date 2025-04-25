@@ -4,17 +4,20 @@ export const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+interface Env {
+  API_ENABLED: boolean;
+}
 
-export const onRequest: PagesFunction = async () => {
+export const onRequest: PagesFunction<Env> = async ({ env }) => {
   const response = {
-    message: "Welcome to the API!",
+    message: env.API_ENABLED === true ? "Welcome to the API!" : "The API has been disabled.",
     docs: "https://swarmfm.ktrain5369.me/api-docs",
   };
 
   return new Response(JSON.stringify(response), {
     headers: {
       "Content-Type": "application/json",
-      ...corsHeaders
+      ...corsHeaders,
     },
   });
 };

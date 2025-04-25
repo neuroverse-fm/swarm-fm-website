@@ -3,6 +3,7 @@ import { corsHeaders } from ".";
 
 interface Env {
   YT_API_KEY: string;
+  API_ENABLED: boolean;
 }
 
 interface YouTubeError {
@@ -24,13 +25,29 @@ export const onRequest: PagesFunction<Env> = async ({
   request,
   waitUntil,
 }) => {
+  // Check if the API is enabled
+  if (env.API_ENABLED !== true) {
+    return new Response(
+      JSON.stringify({
+        error: "API is currently disabled",
+        status: 503,
+        statusText: "Service Unavailable",
+        details: "The API has been temporarily disabled by the site administrator. Check back later.",
+      }),
+      {
+        status: 503,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      }
+    );
+  }
+
   const apiKey = env.YT_API_KEY;
   const channel = "UC2I6ta1bWX7DnEuYNvHiptQ";
 
   if (!apiKey) {
     return new Response(
       JSON.stringify({ error: "YT_API_KEY not set in env" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 
@@ -69,7 +86,7 @@ export const onRequest: PagesFunction<Env> = async ({
         {
           status: 502,
           headers: { "Content-Type": "application/json", ...corsHeaders },
-        },
+        }
       );
     }
 
@@ -84,7 +101,7 @@ export const onRequest: PagesFunction<Env> = async ({
             embedUrl: `https://youtube.com/embed/${live.id.videoId}`,
             nocookieUrl: `https://youtube-nocookie.com/embed/${live.id.videoId}`,
           }
-        : { error: "No live stream found" },
+        : { error: "No live stream found" }
     );
 
     response = new Response(body, {

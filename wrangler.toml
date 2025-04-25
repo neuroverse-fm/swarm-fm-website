@@ -1,2 +1,5 @@
 name = "swarm-fm-website"
 pages_build_output_dir = "./dist"
+
+[vars]
+API_ENABLED = true
