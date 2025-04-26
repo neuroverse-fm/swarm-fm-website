@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev:vite": "vite",
-    "dev:pages": "wrangler pages dev",
+    "dev:pages": "wrangler pages dev ./dist \"pnpm run build\"",
     "build": "vite build",
     "preview": "vite preview",
     "style": "prettier --write ."
@@ -19,8 +19,10 @@
     "@cloudflare/workers-types": "~4.20250424.0",
     "@preact/preset-vite": "~2.10.1",
     "@tailwindcss/vite": "~4.0.12",
+    "@xmldom/xmldom": "~0.9.8",
     "eslint": "~9.22.0",
     "eslint-config-preact": "~1.5.0",
+    "fast-xml-parser": "~5.2.1",
     "postcss-prefixwrap": "~1.55.0",
     "prettier": "~3.5.3",
     "tailwindcss": "~4.0.12",
