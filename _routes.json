@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/community/*",
+    "/index.html",
+    "/tutel.png",
+    "/wide-tutel.png",
+    "/robots.txt"
+  ]
+}
