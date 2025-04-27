@@ -6,8 +6,8 @@ export const corsHeaders = {
 
 export const onRequest = async () => {
   const response = {
-    message: "If you're seeing this, the uptime worker isn't quite working right now.",
-    docs: "https://swarmfm.ktrain5369.me/api-docs",
+    error:
+      "If you're seeing this, the uptime worker isn't quite working right now.",
   };
 
   return new Response(JSON.stringify(response), {

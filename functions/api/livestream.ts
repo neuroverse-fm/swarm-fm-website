@@ -18,7 +18,7 @@ interface YouTubeSearchResponse {
   items: Array<{ id: { videoId: string } }>;
 }
 
-const CACHE_TTL_SECONDS: number = 120;
+const CACHE_TTL_SECONDS: number = 60;
 
 export const onRequest: PagesFunction<Env> = async ({
   env,
@@ -32,12 +32,13 @@ export const onRequest: PagesFunction<Env> = async ({
         error: "API is currently disabled",
         status: 503,
         statusText: "Service Unavailable",
-        details: "The API has been temporarily disabled by the site administrator. Check back later.",
+        details:
+          "The API has been temporarily disabled by the site administrator. Check back later.",
       }),
       {
         status: 503,
         headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
+      },
     );
   }
 
@@ -47,7 +48,7 @@ export const onRequest: PagesFunction<Env> = async ({
   if (!apiKey) {
     return new Response(
       JSON.stringify({ error: "YT_API_KEY not set in env" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
 
@@ -66,7 +67,7 @@ export const onRequest: PagesFunction<Env> = async ({
 
   if (!response) {
     const ytFetch = await fetch(url.toString(), {
-      cf: { cacheTtl: 600, cacheEverything: true },
+      cf: { cacheTtl: CACHE_TTL_SECONDS, cacheEverything: true },
     });
 
     // if YouTube returned an error, grab the JSON body so we can inspect it
@@ -86,7 +87,7 @@ export const onRequest: PagesFunction<Env> = async ({
         {
           status: 502,
           headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
+        },
       );
     }
 
@@ -101,7 +102,7 @@ export const onRequest: PagesFunction<Env> = async ({
             embedUrl: `https://youtube.com/embed/${live.id.videoId}`,
             nocookieUrl: `https://youtube-nocookie.com/embed/${live.id.videoId}`,
           }
-        : { error: "No live stream found" }
+        : { error: "No live stream found" },
     );
 
     response = new Response(body, {

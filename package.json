@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev:vite": "vite",
-    "dev:pages": "wrangler pages dev",
+    "dev:pages": "pnpm run build && wrangler pages dev ./dist",
     "build": "vite build",
     "preview": "vite preview",
     "style": "prettier --write ."

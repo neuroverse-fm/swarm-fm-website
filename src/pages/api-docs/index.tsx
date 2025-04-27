@@ -2,11 +2,16 @@ import { useState } from "preact/hooks";
 import { Layout } from "../../layouts/Layout";
 import Block from "../../components/Blocks";
 import CodeBlock from "../../components/CodeBlock";
-import { livestreamAPIResources } from "./api-docs-resources/livestream";
+import {
+  BackupStatusAPIResources,
+  LivestreamAPIResources,
+  UptimeAPIResources,
+} from "./api-docs-resources/";
 import { JSX } from "preact/jsx-runtime";
 
 interface APIRouteDocsProps {
   title: string;
+  type: "HTTP" | "WebSocket";
   route: string;
   explainer: JSX.Element;
   json: {
@@ -25,10 +30,13 @@ interface APIRouteDocsProps {
 const APIRouteDocs: APIRouteDocsProps[] = [
   {
     title: "Get the latest livestream link",
+    type: "HTTP",
     route: "/livestream",
     explainer: (
       <div class="text-md text-center my-5">
-        <p>This API acts as a relay to the YouTube Data API v3. It provides:</p>
+        <p>
+          This HTTP API acts as a relay to the YouTube Data API v3. It provides:
+        </p>
         <ul>
           <li>- The raw video code</li>
           <li>- The livestream link</li>
@@ -38,15 +46,69 @@ const APIRouteDocs: APIRouteDocsProps[] = [
       </div>
     ),
     json: {
-      successful: livestreamAPIResources.SuccessAPIResponse,
-      failed: livestreamAPIResources.FailedAPIResponse,
+      successful: LivestreamAPIResources.SuccessAPIResponse,
+      failed: LivestreamAPIResources.FailedAPIResponse,
     },
     code: {
-      curl: livestreamAPIResources.cURLCommand,
-      powershell: livestreamAPIResources.PowerShellCode,
-      python: livestreamAPIResources.PythonCode,
-      javascript: livestreamAPIResources.JavaScriptCode,
-      typescript: livestreamAPIResources.TypeScriptInterface,
+      curl: LivestreamAPIResources.cURLCommand,
+      powershell: LivestreamAPIResources.PowerShellCode,
+      python: LivestreamAPIResources.PythonCode,
+      javascript: LivestreamAPIResources.JavaScriptCode,
+      typescript: LivestreamAPIResources.TypeScriptInterface,
+    },
+  },
+  {
+    title: "WebSocket connect to get uptime status updates",
+    type: "WebSocket",
+    route: "/uptime",
+    explainer: (
+      <div class="text-md text-center my-5">
+        <p>
+          This WebSocket API allows you to listen for stream uptime updates.
+        </p>
+        <p>
+          Sending anything through the connection will return back with the current status of the stream.
+        </p>
+        <p>
+          If the Upgrade Protocol handshake fails and you see a very short JSON
+          file, the Cloudflare Worker powering this is probably down.
+        </p>
+      </div>
+    ),
+    json: {
+      successful: UptimeAPIResources.SuccessAPIResponse,
+      failed: UptimeAPIResources.FailedAPIResponse,
+    },
+    code: {
+      python: UptimeAPIResources.PythonCode,
+      javascript: UptimeAPIResources.JavaScriptCode,
+      typescript: UptimeAPIResources.TypeScriptInterface,
+    },
+  },
+  {
+    title: "Backup status API",
+    type: "HTTP",
+    route: "/uptime/status",
+    explainer: (
+      <div class="text-md text-center my-5">
+        <p>
+          This HTTP API essentially acts as a one-time version of the WebSocket
+          API.
+        </p>
+        <p>
+          This API will return the same JSON structure as a successful WebSocket
+          upgrade.
+        </p>
+      </div>
+    ),
+    json: {
+      successful: BackupStatusAPIResources.SuccessAPIResponse,
+      failed: BackupStatusAPIResources.FailedAPIResponse,
+    },
+    code: {
+      python: BackupStatusAPIResources.PythonCode,
+      javascript: BackupStatusAPIResources.JavaScriptCode,
+      typescript: BackupStatusAPIResources.TypeScriptInterface,
     },
   },
 ];
@@ -100,7 +162,7 @@ export function APIDocs() {
           </button>
         </div>
         {APIRouteDocs.map((route: APIRouteDocsProps) => (
-          <Block title={route.title}>
+          <Block title={route.title} key={`${view}-${route.route}`}>
             Route: <code>{route.route}</code>
             <hr class="my-5 border-gray-300" />
             {(() => {
@@ -111,18 +173,24 @@ export function APIDocs() {
                   return (
                     <>
                       <div class="text-md text-center my-5">
-                        A successful call's JSON response looks something like
-                        this:
+                        {route.type === "WebSocket"
+                          ? `On successful upgrades, you can expect to see these packets like these`
+                          : `A successful call's JSON response looks something like this`}
+                        :
                         <CodeBlock
+                          key={`${view}-${route.route}-json-success`}
                           language="json"
                           code={route.json.successful}
                         />
                       </div>
                       {route.json.failed ? (
                         <div class="text-md text-center my-5">
-                          A failed call's JSON response looks something like
-                          this:
-                          <CodeBlock language="json" code={route.json.failed} />
+                          A failed call's JSON response looks something like this:
+                          <CodeBlock
+                            key={`${view}-${route.route}-json-failed`}
+                            language="json"
+                            code={route.json.failed}
+                          />
                         </div>
                       ) : (
                         ""
@@ -135,7 +203,11 @@ export function APIDocs() {
                       {route.code.curl ? (
                         <div class="text-md text-center my-5">
                           <p>Bash (via cURL)</p>
-                          <CodeBlock language="bash" code={route.code.curl} />
+                          <CodeBlock
+                            key={`${view}-${route.route}-curl`}
+                            language="bash"
+                            code={route.code.curl}
+                          />
                         </div>
                       ) : (
                         ""
@@ -144,6 +216,7 @@ export function APIDocs() {
                         <div class="text-md text-center my-5">
                           <p>PowerShell</p>
                           <CodeBlock
+                            key={`${view}-${route.route}-powershell`}
                             language="powershell"
                             code={route.code.powershell}
                           />
@@ -155,6 +228,7 @@ export function APIDocs() {
                         <div class="text-md text-center my-5">
                           <p>Python</p>
                           <CodeBlock
+                            key={`${view}-${route.route}-python`}
                             language="python"
                             code={route.code.python}
                           />
@@ -166,6 +240,7 @@ export function APIDocs() {
                         <div class="text-md text-center my-5">
                           <p>JavaScript</p>
                           <CodeBlock
+                            key={`${view}-${route.route}-javascript`}
                             language="javascript"
                             code={route.code.javascript}
                           />
@@ -177,6 +252,7 @@ export function APIDocs() {
                         <div class="text-md text-center my-5">
                           <p>TypeScript types</p>
                           <CodeBlock
+                            key={`${view}-${route.route}-typescript`}
                             language="typescript"
                             code={route.code.typescript}
                           />

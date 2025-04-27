@@ -1,4 +1,4 @@
-export namespace livestreamAPIResources {
+export namespace LivestreamAPIResources {
   export const SuccessAPIResponse: string = `{
     "rawVideoCode": "abc123",
     "livestreamUrl": "https://youtu.be/abc123",
