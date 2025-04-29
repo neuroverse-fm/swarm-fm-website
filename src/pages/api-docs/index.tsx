@@ -8,6 +8,7 @@ import {
   UptimeAPIResources,
 } from "./api-docs-resources/";
 import { JSX } from "preact/jsx-runtime";
+import StyledLink from "../../components/StyledLink";
 
 interface APIRouteDocsProps {
   title: string;
@@ -67,7 +68,8 @@ const APIRouteDocs: APIRouteDocsProps[] = [
           This WebSocket API allows you to listen for stream uptime updates.
         </p>
         <p>
-          Sending anything through the connection will return back with the current status of the stream.
+          Sending anything through the connection will return back with the
+          current status of the stream.
         </p>
         <p>
           If the Upgrade Protocol handshake fails and you see a very short JSON
@@ -123,8 +125,8 @@ export function APIDocs() {
           Unofficial API's official docs
         </h1>
         <p class="mt-4 text-xl text-center">
-          This site's unofficial API simply acts as a relay to the YouTube Data
-          API v3.
+          This site's unofficial API simply acts as a non-API-key, more
+          convenient relay to the YouTube Data API v3.
         </p>
         <p class="text-bold mt-4 mb-5 text-xl text-center">
           Note: All API routes live under <code>/api/{"{route}"}</code>
@@ -185,7 +187,8 @@ export function APIDocs() {
                       </div>
                       {route.json.failed ? (
                         <div class="text-md text-center my-5">
-                          A failed call's JSON response looks something like this:
+                          A failed call's JSON response looks something like
+                          this:
                           <CodeBlock
                             key={`${view}-${route.route}-json-failed`}
                             language="json"
@@ -266,6 +269,17 @@ export function APIDocs() {
             })()}
           </Block>
         ))}
+        <p class="text-center my-5 italic">
+          The APIs are open-source. You can see the website API code{" "}
+          <StyledLink href="https://github.com/neuroverse-fm/swarm-fm-website/tree/main/functions/api">
+            here
+          </StyledLink>{" "}
+          and the Worker code{" "}
+          <StyledLink href="https://github.com/neuroverse-fm/swarm-fm-uptime-worker">
+            here
+          </StyledLink>
+          .
+        </p>
       </div>
     </Layout>
   );
