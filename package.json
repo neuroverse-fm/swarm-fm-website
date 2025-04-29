@@ -19,7 +19,7 @@
     "@cloudflare/workers-types": "~4.20250424.0",
     "@preact/preset-vite": "~2.10.1",
     "@tailwindcss/vite": "~4.0.12",
-    "eslint": "~9.22.0",
+    "eslint": "~9.25.1",
     "eslint-config-preact": "~1.5.0",
     "postcss-prefixwrap": "~1.55.0",
     "prettier": "~3.5.3",
