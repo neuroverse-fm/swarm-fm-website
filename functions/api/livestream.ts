@@ -18,7 +18,7 @@ interface YouTubeSearchResponse {
   items: Array<{ id: { videoId: string } }>;
 }
 
-const CACHE_TTL_SECONDS: number = 60;
+const CACHE_TTL_SECONDS: number = 120;
 
 export const onRequest: PagesFunction<Env> = async ({
   env,
