@@ -4,6 +4,7 @@ import Block from "../../components/Blocks";
 import CodeBlock from "../../components/CodeBlock";
 import {
   BackupStatusAPIResources,
+  FlushStatusAPIResources,
   LivestreamAPIResources,
   UptimeAPIResources,
 } from "./api-docs-resources/";
@@ -13,6 +14,7 @@ import StyledLink from "../../components/StyledLink";
 interface APIRouteDocsProps {
   title: string;
   type: "HTTP" | "WebSocket";
+  methods?: string[];
   route: string;
   explainer: JSX.Element;
   json: {
@@ -32,6 +34,7 @@ const APIRouteDocs: APIRouteDocsProps[] = [
   {
     title: "Get the latest livestream link",
     type: "HTTP",
+    methods: ["GET"],
     route: "/livestream",
     explainer: (
       <div class="text-md text-center my-5">
@@ -61,6 +64,7 @@ const APIRouteDocs: APIRouteDocsProps[] = [
   {
     title: "WebSocket connect to get uptime status updates",
     type: "WebSocket",
+    methods: ["Upgrade"],
     route: "/uptime",
     explainer: (
       <div class="text-md text-center my-5">
@@ -90,6 +94,7 @@ const APIRouteDocs: APIRouteDocsProps[] = [
   {
     title: "Backup status API",
     type: "HTTP",
+    methods: ["GET"],
     route: "/uptime/status",
     explainer: (
       <div class="text-md text-center my-5">
@@ -111,6 +116,29 @@ const APIRouteDocs: APIRouteDocsProps[] = [
       python: BackupStatusAPIResources.PythonCode,
       javascript: BackupStatusAPIResources.JavaScriptCode,
       typescript: BackupStatusAPIResources.TypeScriptInterface,
+    },
+  },
+  {
+    title: "Flush Worker object",
+    type: "HTTP",
+    methods: ["POST"],
+    route: "/uptime/flush",
+    explainer: (
+      <div class="text-md text-center my-5">
+        <p>
+          Flushes the state of the Worker's DO to re-obtain the latest video
+          code.
+        </p>
+      </div>
+    ),
+    json: {
+      successful: FlushStatusAPIResources.SuccessAPIResponse,
+      failed: FlushStatusAPIResources.FailedAPIResponse,
+    },
+    code: {
+      python: FlushStatusAPIResources.PythonCode,
+      javascript: FlushStatusAPIResources.JavaScriptCode,
+      typescript: FlushStatusAPIResources.TypeScriptInterface,
     },
   },
 ];
@@ -166,6 +194,22 @@ export function APIDocs() {
         {APIRouteDocs.map((route: APIRouteDocsProps) => (
           <Block title={route.title} key={`${view}-${route.route}`}>
             Route: <code>{route.route}</code>
+            {route.methods ? (
+              <>
+                <p class="text-md">Acceptable routes:</p>
+                <ul>
+                  {route.methods.map((method: string) => (
+                    <li>
+                      <code>{method}</code>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <>
+                <p class="text-md">No documented acceptable routes.</p>
+              </>
+            )}
             <hr class="my-5 border-gray-300" />
             {(() => {
               switch (view) {

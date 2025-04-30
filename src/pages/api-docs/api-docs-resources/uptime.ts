@@ -160,13 +160,107 @@ getStatus();
 `;
 
   export const TypeScriptInterface: string = `
-interface SuccessfulHTTPResponse {
+interface successfulHTTPResponse {
     live: boolean;
     videoId: string | null;
 }
 
-interface FailedWSConnection {
+interface failedHTTPResponse {
     error: string;
+}
+`;
+}
+
+export namespace FlushStatusAPIResources {
+  export const SuccessAPIResponse: string = `{
+  // Livestream found
+  "live": true,
+  "videoId": "abcd1234"
+}
+
+{
+  // No livestream found
+  "live": false,
+  "videoId": null
+}
+`;
+
+  export const FailedAPIResponse: string = `{
+  // Cooldown
+  "error": "Stop hitting the API.",
+  "retry_after": 1782,
+  "statusText": "Cooldown is active."
+}
+
+{
+  // YouTube API error
+  "error": "YouTube Data API error",
+  "status": 503,
+  "statusText": "Service Unavailable"
+}
+`;
+
+  export const PythonCode: string = `
+import requests
+
+def flush():
+    URL = "https://swarmfm.ktrain5369.me/api/uptime/flush"
+    resp = requests.post(URL)
+    data = resp.json()
+
+    if resp.status_code == 200:
+        print("✅ Live:", data)
+    elif resp.status_code == 404:
+        print("ℹ️ No livestream:", data)
+    elif resp.status_code == 429:
+        print("⏳ Cooldown:", data)
+    elif resp.status_code == 502:
+        print("🚨 YouTube API error:", data)
+    else:
+        print(f"❓ Unexpected {resp.status_code}:", data)
+
+if __name__ == "__main__":
+    flush()
+`;
+
+  export const JavaScriptCode: string = `
+async function flush() {
+  const URL = 'https://example.pages.dev/flush';
+  const res = await fetch(URL, { method: 'POST' });
+  const data = await res.json();
+
+  switch (res.status) {
+    case 200:
+      console.log('✅ Live:', data);
+      break;
+    case 404:
+      console.log('ℹ️ No livestream:', data);
+      break;
+    case 429:
+      console.warn('⏳ Cooldown:', data);
+      break;
+    case 502:
+      console.error('🚨 YouTube API error:', data);
+      break;
+    default:
+      console.error(\`❓ Unexpected \${res.status}:\`, data);
+  }
+}
+
+flush().catch(console.error);
+`;
+
+  export const TypeScriptInterface: string = `
+interface successfulHTTPResponse {
+  live: boolean;
+  videoId: string | null;
+}
+
+interface failedHTTPResponse {
+  error: string;
+  retry_after?: number;
+  status?: number;
+  statusText: string;
 }
 `;
 }
