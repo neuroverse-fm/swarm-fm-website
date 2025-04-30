@@ -169,6 +169,20 @@ interface failedHTTPResponse {
     error: string;
 }
 `;
+
+  export const cURLCommand: string = `
+curl -X GET "https://swarmfm.ktrain5369.me/api/uptime/status" \\
+     -H "Content-Type: application/json"
+`;
+
+  export const PowerShellScript: string = `
+$headers = @{
+    "Content-Type" = "application/json"
+}
+
+$response = Invoke-RestMethod -Uri "https://swarmfm.ktrain5369.me/api/uptime/status" -Headers $headers -Method Get
+Write-Output $response.videoId
+`;
 }
 
 export namespace FlushStatusAPIResources {
@@ -262,5 +276,19 @@ interface failedHTTPResponse {
   status?: number;
   statusText: string;
 }
+`;
+
+  export const cURLCommand: string = `
+curl -X POST "https://swarmfm.ktrain5369.me/api/uptime/flush" \\
+     -H "Content-Type: application/json"
+`;
+
+  export const PowerShellScript: string = `
+$headers = @{
+    "Content-Type" = "application/json"
+}
+
+$response = Invoke-RestMethod -Uri "https://swarmfm.ktrain5369.me/api/uptime/flush" -Headers $headers -Method Post
+Write-Output $response.videoId
 `;
 }

@@ -44,7 +44,7 @@ curl -X GET "https://swarmfm.ktrain5369.me/api/livestream" \\
      -H "Content-Type: application/json"
 `;
 
-  export const PowerShellCode: string = `
+  export const PowerShellScript: string = `
 $headers = @{
     "Content-Type" = "application/json"
 }

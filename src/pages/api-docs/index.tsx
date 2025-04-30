@@ -21,7 +21,7 @@ interface APIRouteDocsProps {
     successful: string;
     failed?: string;
   };
-  code: {
+  code?: {
     curl?: string;
     powershell?: string;
     python?: string;
@@ -55,7 +55,7 @@ const APIRouteDocs: APIRouteDocsProps[] = [
     },
     code: {
       curl: LivestreamAPIResources.cURLCommand,
-      powershell: LivestreamAPIResources.PowerShellCode,
+      powershell: LivestreamAPIResources.PowerShellScript,
       python: LivestreamAPIResources.PythonCode,
       javascript: LivestreamAPIResources.JavaScriptCode,
       typescript: LivestreamAPIResources.TypeScriptInterface,
@@ -75,7 +75,7 @@ const APIRouteDocs: APIRouteDocsProps[] = [
           Sending anything through the connection will return back with the
           current status of the stream.
         </p>
-        <p>
+        <p class="my-2">
           If the Upgrade Protocol handshake fails and you see a very short JSON
           file, the Cloudflare Worker powering this is probably down.
         </p>
@@ -113,6 +113,8 @@ const APIRouteDocs: APIRouteDocsProps[] = [
       failed: BackupStatusAPIResources.FailedAPIResponse,
     },
     code: {
+      curl: BackupStatusAPIResources.cURLCommand,
+      powershell: BackupStatusAPIResources.PowerShellScript,
       python: BackupStatusAPIResources.PythonCode,
       javascript: BackupStatusAPIResources.JavaScriptCode,
       typescript: BackupStatusAPIResources.TypeScriptInterface,
@@ -136,6 +138,8 @@ const APIRouteDocs: APIRouteDocsProps[] = [
       failed: FlushStatusAPIResources.FailedAPIResponse,
     },
     code: {
+      curl: FlushStatusAPIResources.cURLCommand,
+      powershell: FlushStatusAPIResources.PowerShellScript,
       python: FlushStatusAPIResources.PythonCode,
       javascript: FlushStatusAPIResources.JavaScriptCode,
       typescript: FlushStatusAPIResources.TypeScriptInterface,
@@ -196,11 +200,11 @@ export function APIDocs() {
             Route: <code>{route.route}</code>
             {route.methods ? (
               <>
-                <p class="text-md">Acceptable routes:</p>
+                <p class="text-md">Acceptable request methods:</p>
                 <ul>
                   {route.methods.map((method: string) => (
                     <li>
-                      <code>{method}</code>
+                      - <code>{method}</code>
                     </li>
                   ))}
                 </ul>
@@ -245,70 +249,76 @@ export function APIDocs() {
                     </>
                   );
                 case "code":
-                  return (
-                    <>
-                      {route.code.curl ? (
-                        <div class="text-md text-center my-5">
-                          <p>Bash (via cURL)</p>
-                          <CodeBlock
-                            key={`${view}-${route.route}-curl`}
-                            language="bash"
-                            code={route.code.curl}
-                          />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                      {route.code.powershell ? (
-                        <div class="text-md text-center my-5">
-                          <p>PowerShell</p>
-                          <CodeBlock
-                            key={`${view}-${route.route}-powershell`}
-                            language="powershell"
-                            code={route.code.powershell}
-                          />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                      {route.code.python ? (
-                        <div class="text-md text-center my-5">
-                          <p>Python</p>
-                          <CodeBlock
-                            key={`${view}-${route.route}-python`}
-                            language="python"
-                            code={route.code.python}
-                          />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                      {route.code.javascript ? (
-                        <div class="text-md text-center my-5">
-                          <p>JavaScript</p>
-                          <CodeBlock
-                            key={`${view}-${route.route}-javascript`}
-                            language="javascript"
-                            code={route.code.javascript}
-                          />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                      {route.code.typescript ? (
-                        <div class="text-md text-center my-5">
-                          <p>TypeScript types</p>
-                          <CodeBlock
-                            key={`${view}-${route.route}-typescript`}
-                            language="typescript"
-                            code={route.code.typescript}
-                          />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                    </>
-                  );
+                  if (route.code) {
+                    return (
+                      <>
+                        {route.code.curl ? (
+                          <div class="text-md text-center my-5">
+                            <p>Bash (via cURL)</p>
+                            <CodeBlock
+                              key={`${view}-${route.route}-curl`}
+                              language="bash"
+                              code={route.code.curl}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        {route.code.powershell ? (
+                          <div class="text-md text-center my-5">
+                            <p>PowerShell</p>
+                            <CodeBlock
+                              key={`${view}-${route.route}-powershell`}
+                              language="powershell"
+                              code={route.code.powershell}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        {route.code.python ? (
+                          <div class="text-md text-center my-5">
+                            <p>Python</p>
+                            <CodeBlock
+                              key={`${view}-${route.route}-python`}
+                              language="python"
+                              code={route.code.python}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        {route.code.javascript ? (
+                          <div class="text-md text-center my-5">
+                            <p>JavaScript</p>
+                            <CodeBlock
+                              key={`${view}-${route.route}-javascript`}
+                              language="javascript"
+                              code={route.code.javascript}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        {route.code.typescript ? (
+                          <div class="text-md text-center my-5">
+                            <p>TypeScript types</p>
+                            <CodeBlock
+                              key={`${view}-${route.route}-typescript`}
+                              language="typescript"
+                              code={route.code.typescript}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </>
+                    );
+                  } else {
+                    return (
+                      <p class="italic text-md">No example code available.</p>
+                    );
+                  }
               }
             })()}
           </Block>
