@@ -25,95 +25,110 @@ export const onRequest: PagesFunction<Env> = async ({
   request,
   waitUntil,
 }) => {
-  // Check if the API is enabled
-  if (env.API_ENABLED !== "true") {
-    return new Response(
-      JSON.stringify({
-        error: "API is currently disabled",
-        status: 503,
-        statusText: "Service Unavailable",
-        details:
-          "The API has been temporarily disabled by the site administrator. Check back later.",
-      }),
-      {
-        status: 503,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      },
-    );
-  }
-
-  const apiKey = env.YT_API_KEY;
-  const channel = "UC2I6ta1bWX7DnEuYNvHiptQ";
-
-  if (!apiKey) {
-    return new Response(
-      JSON.stringify({ error: "YT_API_KEY not set in env" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
-    );
-  }
-
-  const url = new URL("https://www.googleapis.com/youtube/v3/search");
-  url.search = new URLSearchParams({
-    part: "snippet",
-    channelId: channel,
-    eventType: "live",
-    type: "video",
-    key: apiKey,
-  }).toString();
-
-  const cache = (caches as any).default;
-  const cacheKey = new Request(url.toString());
-  let response = await cache.match(cacheKey);
-
-  if (!response) {
-    const ytFetch = await fetch(url.toString(), {
-      cf: { cacheTtl: CACHE_TTL_SECONDS, cacheEverything: true },
-    });
-
-    // if YouTube returned an error, grab the JSON body so we can inspect it
-    if (!ytFetch.ok) {
-      let details: YouTubeError | null = null;
-      try {
-        details = (await ytFetch.json()) as YouTubeError;
-      } catch {}
-
+  try {
+    // Check if the API is enabled
+    if (env.API_ENABLED !== "true") {
       return new Response(
         JSON.stringify({
-          error: "YouTube API error",
-          status: ytFetch.status,
-          statusText: ytFetch.statusText,
-          details,
+          error: "API is currently disabled",
+          status: 503,
+          statusText: "Service Unavailable",
+          details:
+            "The API has been temporarily disabled by the site administrator. Check back later.",
         }),
         {
-          status: 502,
+          status: 503,
           headers: { "Content-Type": "application/json", ...corsHeaders },
-        },
+        }
       );
     }
 
-    const data = (await ytFetch.json()) as YouTubeSearchResponse;
-    const live = data.items[0];
+    const apiKey = env.YT_API_KEY;
+    const channel = "UC2I6ta1bWX7DnEuYNvHiptQ";
 
-    const body = JSON.stringify(
-      live
-        ? {
-            rawVideoCode: live.id.videoId,
-            livestreamUrl: `https://youtu.be/${live.id.videoId}`,
-            embedUrl: `https://youtube.com/embed/${live.id.videoId}`,
-            nocookieUrl: `https://youtube-nocookie.com/embed/${live.id.videoId}`,
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({ error: "YT_API_KEY not set in env" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const url = new URL("https://www.googleapis.com/youtube/v3/search");
+    url.search = new URLSearchParams({
+      part: "snippet",
+      channelId: channel,
+      eventType: "live",
+      type: "video",
+      key: apiKey,
+    }).toString();
+
+    const cache = (caches as any).default;
+    const cacheKey = new Request(url.toString());
+    let response = await cache.match(cacheKey);
+
+    if (!response) {
+      const ytFetch = await fetch(url.toString(), {
+        cf: { cacheTtl: CACHE_TTL_SECONDS, cacheEverything: true },
+      });
+
+      // if YouTube returned an error, grab the JSON body so we can inspect it
+      if (!ytFetch.ok) {
+        let details: YouTubeError | null = null;
+        try {
+          details = (await ytFetch.json()) as YouTubeError;
+        } catch {}
+
+        return new Response(
+          JSON.stringify({
+            error: "YouTube API error",
+            status: ytFetch.status,
+            statusText: ytFetch.statusText,
+            details,
+          }),
+          {
+            status: 502,
+            headers: { "Content-Type": "application/json", ...corsHeaders },
           }
-        : { error: "No live stream found" },
+        );
+      }
+
+      const data = (await ytFetch.json()) as YouTubeSearchResponse;
+      const live = data.items[0];
+
+      const body = JSON.stringify(
+        live
+          ? {
+              rawVideoCode: live.id.videoId,
+              livestreamUrl: `https://youtu.be/${live.id.videoId}`,
+              embedUrl: `https://youtube.com/embed/${live.id.videoId}`,
+              nocookieUrl: `https://youtube-nocookie.com/embed/${live.id.videoId}`,
+            }
+          : { error: "No live stream found" }
+      );
+
+      response = new Response(body, {
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": `public, max-age=${CACHE_TTL_SECONDS}`,
+          ...corsHeaders,
+        },
+      });
+      waitUntil(cache.put(cacheKey, response.clone()));
+    }
+
+    return response;
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        error: "Internal Server Error",
+        status: 500,
+        statusText: "Something went wrong while processing your request.",
+        details: error instanceof Error ? error.message : String(error),
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      }
     );
-
-    response = new Response(body, {
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": `public, max-age=${CACHE_TTL_SECONDS}`,
-        ...corsHeaders,
-      },
-    });
-    waitUntil(cache.put(cacheKey, response.clone()));
   }
-
-  return response;
 };
