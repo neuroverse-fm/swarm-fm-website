@@ -7,5 +7,3 @@ export async function selfQueryYouTubeStream() {
   console.log(data);
   return (data as any).embedUrl;
 }
-
-export const YOUTUBE_STREAM = selfQueryYouTubeStream();

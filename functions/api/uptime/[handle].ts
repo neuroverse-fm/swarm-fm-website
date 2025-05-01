@@ -1,4 +1,4 @@
-import { corsHeaders } from ".";
+import { corsHeaders } from "..";
 
 export const onRequest = async () => {
   try {
