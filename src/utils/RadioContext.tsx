@@ -10,7 +10,7 @@ export function RadioProvider({ children }) {
   useEffect(() => {
     async function fetchStreamUrl() {
       const url = await selfQueryYouTubeStream();
-      setStreamUrl(url);
+      setStreamUrl(url.embedUrl);
     }
     fetchStreamUrl();
   }, []);
