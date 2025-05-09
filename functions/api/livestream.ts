@@ -93,6 +93,7 @@ export const onRequest: PagesFunction<Env> = async ({
       }
 
       const data = (await ytFetch.json()) as YouTubeSearchResponse;
+      console.log(`YouTube API response: ${JSON.stringify(data, null, 2)}`)
       const live = data.items[0];
 
       const body = JSON.stringify(

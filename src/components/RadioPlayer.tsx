@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import useRadio from "../utils/RadioContext";
-import { YOUTUBE_STREAM } from "../consts";
+import { selfQueryYouTubeStream } from "../consts";
 
 export function RadioPlayer() {
   const { streamUrl, setStreamUrl } = useRadio();
@@ -10,10 +10,11 @@ export function RadioPlayer() {
     return <div>Loading... Try refreshing if this stays.</div>; // Show a loading state while the stream URL is being fetched
   }
 
-  const reloadStream = () => {
+  const reloadStream = async () => {
     setStreamUrl(""); // Temporarily clear the URL to force a reload
-    setTimeout(() => {
-      setStreamUrl(YOUTUBE_STREAM); // Reset the URL to the original stream
+    setTimeout(async () => {
+      const data = await selfQueryYouTubeStream();
+      setStreamUrl(data.embedUrl);
     }, 100);
   };
 
