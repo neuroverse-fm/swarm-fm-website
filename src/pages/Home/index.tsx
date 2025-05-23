@@ -2,29 +2,38 @@ import { Layout } from "../../layouts/Layout";
 import { RADIO_TITLE } from "../../consts";
 import { SocialButton } from "../../components/SocialButton";
 import { StyledLink } from "../../components/StyledLink";
-
-const socials: socialProps[] = [
-  {
-    href: "https://youtube.com/watch?v=thCiTnOzkOM",
-    name: "YouTube (Livestream)",
-    icon: "youtube",
-    colours: "bg-red-500 hover:bg-red-700",
-  },
-  {
-    href: "https://discord.com/invite/SyHegkDmeF",
-    name: "Discord",
-    icon: "discord",
-    colours: "bg-indigo-500 hover:bg-indigo-700",
-  },
-  {
-    href: "https://buymeacoffee.com/boop_dot",
-    name: "Buy Me a Coffee (boop)",
-    icon: "coffee",
-    colours: "bg-blue-400 hover:bg-blue-500",
-  },
-];
+import { useRadio } from "../../utils/RadioContext";
 
 export function Home() {
+  // Destructure streamUrl from the radio context; ensure this component is wrapped in RadioProvider
+  const { streamUrl } = useRadio();
+
+  // Use a fallback link if streamUrl is not yet available
+  const youtubeLink = streamUrl
+    ? streamUrl.replace("embed/", "watch?v=")
+    : "https://youtube.com/@boop/live";
+
+  const socials: socialProps[] = [
+    {
+      href: youtubeLink,
+      name: "YouTube (Livestream)",
+      icon: "youtube",
+      colours: "bg-red-500 hover:bg-red-700",
+    },
+    {
+      href: "https://discord.com/invite/SyHegkDmeF",
+      name: "Discord",
+      icon: "discord",
+      colours: "bg-indigo-500 hover:bg-indigo-700",
+    },
+    {
+      href: "https://buymeacoffee.com/boop_dot",
+      name: "Buy Me a Coffee (boop)",
+      icon: "coffee",
+      colours: "bg-blue-400 hover:bg-blue-500",
+    },
+  ];
+
   return (
     <Layout title="Home">
       <div class="flex justify-center mt-4">
@@ -53,3 +62,5 @@ export function Home() {
     </Layout>
   );
 }
+
+export default Home;
