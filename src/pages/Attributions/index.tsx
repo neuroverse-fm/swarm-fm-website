@@ -42,7 +42,7 @@ const AttribsList: AttributionProps[] = [
       },
       {
         name: "HighKey/KTrain",
-        link: "https://ktrain5169.github.io",
+        link: "https://ktrain5369.me/",
       },
     ],
   },
