@@ -84,7 +84,7 @@ const AttribsList: AttributionProps[] = [
 
 export function Attributions() {
   return (
-    <Layout title="Community projects">
+    <Layout title="Attributions">
       <div class="flex flex-col items-center">
         <h1 class="text-3xl font-bold text-center">Attributions</h1>
         <p class="mt-4 text-xl text-center">
