@@ -16,7 +16,7 @@
     "prismjs": "~1.30.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "~4.20250519.0",
+    "@cloudflare/workers-types": "~4.20250525.0",
     "@preact/preset-vite": "~2.10.1",
     "@tailwindcss/vite": "~4.1.7",
     "eslint": "~9.27.0",
