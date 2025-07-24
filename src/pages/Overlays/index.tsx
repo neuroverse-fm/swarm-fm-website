@@ -4,9 +4,17 @@ import { StyledLink } from "../../components/StyledLink";
 
 const overlays: OverlayDisplayProps[] = [
   {
-    name: "Song overlay (top)",
-    url: "https://swarmfm.boopdev.com/player/details-overlay?position=top",
+    name: "Song details overlay",
+    url: "https://swarmfm.boopdev.com/player/details-overlay",
   },
+  {
+    name: "OBS overlay",
+    url: "https://swarmfm.boopdev.com/player/obs-overlay",
+  },
+  {
+    name: "Neuro-themed overlay",
+    url: "https://swarmfm.boopdev.com/player/neuro-overlay",
+  }
 ];
 
 export function Overlays() {

@@ -9,30 +9,31 @@
     "style": "prettier --write ."
   },
   "dependencies": {
-    "preact": "~10.26.5",
-    "preact-iso": "~2.9.1",
+    "preact": "~10.26.9",
+    "preact-iso": "~2.9.2",
     "preact-router": "~4.1.2",
     "prism-themes": "~1.9.0",
     "prismjs": "~1.30.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "~4.20250519.0",
-    "@preact/preset-vite": "~2.10.1",
-    "@tailwindcss/vite": "~4.1.7",
-    "eslint": "~9.27.0",
-    "eslint-config-preact": "~1.5.0",
-    "postcss-prefixwrap": "~1.55.0",
-    "prettier": "~3.5.3",
-    "tailwindcss": "~4.1.7",
+    "@cloudflare/workers-types": "~4.20250724.0",
+    "@preact/preset-vite": "~2.10.2",
+    "@tailwindcss/vite": "~4.1.11",
+    "eslint": "~9.31.0",
+    "eslint-config-preact": "~2.0.0",
+    "postcss-prefixwrap": "~1.56.0",
+    "prettier": "~3.6.2",
+    "tailwindcss": "~4.1.11",
     "typescript": "~5.8.3",
-    "vite": "~6.3.5",
-    "wrangler": "~4.16.1"
+    "vite": "~7.0.5",
+    "wrangler": "~4.25.1"
   },
   "eslintConfig": {
     "extends": "preact"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "esbuild",
       "sharp",
       "workerd"
