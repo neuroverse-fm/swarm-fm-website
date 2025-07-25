@@ -28,6 +28,7 @@ export const onRequest: PagesFunction<Env> = async ({
   try {
     // Check if the API is enabled
     if (env.API_ENABLED !== "true") {
+      console.log("Current API enabled variable: " + env.API_ENABLED)
       return new Response(
         JSON.stringify({
           error: "API is currently disabled",
