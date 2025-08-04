@@ -21,7 +21,7 @@
     "@tailwindcss/vite": "~4.1.11",
     "eslint": "~9.31.0",
     "eslint-config-preact": "~2.0.0",
-    "postcss-prefixwrap": "~1.56.0",
+    "postcss-prefixwrap": "~1.56.1",
     "prettier": "~3.6.2",
     "tailwindcss": "~4.1.11",
     "typescript": "~5.8.3",
