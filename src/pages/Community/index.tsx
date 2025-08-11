@@ -9,7 +9,7 @@ const projects: ProjectsProps[] = [
       "An application that comes with Auto-Startup, Pin On Top, and of course, the stream that powers it all.",
     image: "/community/SwarmFM-Player.png",
     source: "https://github.com/gwashark/swarmfm-player",
-    link: "https://github.com/gwashark/swarmfm-player/releases/",
+    link: "https://l.sbvr.us/swarmfm-player",
     linkText: "Install",
   },
   {
@@ -40,7 +40,7 @@ const projects: ProjectsProps[] = [
     author: "Gwa Shark, HighKey, RaneingClouds",
     description:
       "The channel where SwarmFM community streams happen! Usually consists of Minecraft & dev streams.",
-    link: "https://twitch.tv/swarmfm",
+    link: "https://twitch.tv/swarmfmcommunity",
     linkText: "Watch",
   },
 ];
