@@ -24,7 +24,7 @@
     "postcss-prefixwrap": "~1.56.2",
     "prettier": "~3.6.2",
     "tailwindcss": "~4.1.11",
-    "typescript": "~5.8.3",
+    "typescript": "~5.9.2",
     "vite": "~7.1.2",
     "wrangler": "~4.25.1"
   },
