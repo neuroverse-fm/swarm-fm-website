@@ -30,13 +30,5 @@
   },
   "eslintConfig": {
     "extends": "preact"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "esbuild",
-      "sharp",
-      "workerd"
-    ]
   }
 }
