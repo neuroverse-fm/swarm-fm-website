@@ -40,8 +40,8 @@ importers:
         specifier: ~2.0.0
         version: 2.0.0(eslint@9.31.0(jiti@2.5.0))
       postcss-prefixwrap:
-        specifier: ~1.56.0
-        version: 1.56.0(postcss@8.5.6)
+        specifier: ~1.56.2
+        version: 1.56.2(postcss@8.5.6)
       prettier:
         specifier: ~3.6.2
         version: 3.6.2
@@ -1841,8 +1841,8 @@ packages:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
 
-  postcss-prefixwrap@1.56.0:
-    resolution: {integrity: sha512-SiKCqNJMbnJn8YDZM0GvaJkRY+jbvZLnPHqpawuGOVg16sEE00eVz24PgB4r8wYmpfvw3wrJu/e6y2hIxm9dIw==}
+  postcss-prefixwrap@1.56.2:
+    resolution: {integrity: sha512-PnIsMX/VTtLYUrZe8Cex4vqXVvl5PUKbDbD52Wcp94ObZkt05oehCuOVvsUeig0eQoGOhTDBHfR8nnIkjf1/uA==}
     peerDependencies:
       postcss: '*'
 
@@ -3965,7 +3965,7 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-prefixwrap@1.56.0(postcss@8.5.6):
+  postcss-prefixwrap@1.56.2(postcss@8.5.6):
     dependencies:
       postcss: 8.5.6
 
