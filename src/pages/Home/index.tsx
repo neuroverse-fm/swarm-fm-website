@@ -15,10 +15,10 @@ export function Home() {
 
   const socials: socialProps[] = [
     {
-      href: youtubeLink,
+      //href: youtubeLink,
       name: "YouTube (Livestream)",
       icon: "youtube",
-      colours: "bg-red-500 hover:bg-red-700",
+      colours: "bg-gray-500 hover:bg-gray-700 line-through",
     },
     {
       href: "https://discord.com/invite/SyHegkDmeF",

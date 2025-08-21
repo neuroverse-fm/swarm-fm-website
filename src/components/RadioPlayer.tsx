@@ -7,7 +7,7 @@ export function RadioPlayer() {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   if (!streamUrl) {
-    return <div>Loading... Try refreshing if this stays.</div>; // Show a loading state while the stream URL is being fetched
+    return <div class="text-center">Loading... Try refreshing if this stays, or use <a href="https://player.sw.arm.fm/" class="text-blue-500 hover:text-blue-400 underline">the community player</a> instead.</div>; // Show a loading state while the stream URL is being fetched
   }
 
   const reloadStream = async () => {

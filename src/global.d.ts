@@ -46,7 +46,7 @@ interface SocialButtonProps {
 }
 
 interface socialProps {
-  href: string;
+  href?: string;
   name: string;
   icon: string;
   colours: string;

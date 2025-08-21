@@ -9,7 +9,7 @@ export const SocialButton = ({
 
   return (
     <a
-      href={href}
+      href={href ? href : ""}
       class={`flex items-center ${colours} text-white font-bold py-2 px-4 rounded`}
     >
       <i class={`${iconClass} fa-${iconName} mr-2`} />
