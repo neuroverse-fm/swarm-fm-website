@@ -18,7 +18,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "~4.20250816.0",
     "@preact/preset-vite": "~2.10.2",
-    "@tailwindcss/vite": "~4.1.11",
+    "@tailwindcss/vite": "~4.1.14",
     "eslint": "~9.31.0",
     "eslint-config-preact": "~2.0.0",
     "postcss-prefixwrap": "~1.56.2",
